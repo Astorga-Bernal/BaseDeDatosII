@@ -68,8 +68,5 @@ public class Settings {
 		url_baseB = ini.getParameters("url_baseB");
 		usernameB = ini.getParameters("usernameB");
 		passwordB = ini.getParameters("passwordB");
-
-		System.out.println("Base de Datos A: " + url_baseA);
-		System.out.println("Base de Datos B: " + url_baseB);
 	}
 }
