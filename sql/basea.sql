@@ -1,5 +1,5 @@
 -- Databases: "baseA - Base de Datos II 2015"
--- Motor: Mysql
+-- Motor: Mysql    
 
 CREATE DATABASE /*!32312 IF NOT EXISTS*/ baseA;
 USE baseA;

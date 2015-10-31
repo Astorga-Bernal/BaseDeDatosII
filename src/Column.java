@@ -6,6 +6,6 @@ public class Column {
 		// TODO Auto-generated constructor stub
 	}
 
-
+  
 
 }
