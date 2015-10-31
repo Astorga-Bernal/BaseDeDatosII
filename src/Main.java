@@ -1,8 +1,5 @@
 package src;
 
-import java.sql.ResultSet;
-import com.mysql.jdbc.Statement;
-
 import src.utils.Settings;
 
 public class Main {
