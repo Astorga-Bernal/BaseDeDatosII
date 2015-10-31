@@ -2,12 +2,12 @@ package src.utils;
 
 public class Settings {
 
-	private static String url_baseA = "jdbc:mysql://localhost/baseA";
+	private static String url_baseA = "jdbc:mysql://localhost/basea";
 	private static String usernameA = "root";
-	private static String passwordA = "";
-	private static String url_baseB = "jdbc:mysql://localhost/baseB";
+	private static String passwordA = "roor";
+	private static String url_baseB = "jdbc:mysql://localhost/baseb";
 	private static String usernameB = "root";
-	private static String passwordB = "";
+	private static String passwordB = "root";
 
 	public static String getUrl_baseA() {
 		return url_baseA;

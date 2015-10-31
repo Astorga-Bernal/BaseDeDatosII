@@ -1,8 +1,8 @@
 -- Databases: "baseA - Base de Datos II 2015"
 -- Motor: Mysql    
 
-CREATE DATABASE /*!32312 IF NOT EXISTS*/ baseA;
-USE baseA;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/ basea;
+USE basea;
 
 
 -- Table "Cliente"
