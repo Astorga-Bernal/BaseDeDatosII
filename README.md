@@ -13,5 +13,5 @@ los docentes de la materia. La herramienta deberá generar un informe con las di
 entre ambas bases de datos.
 
 #####Integrantes:
-* [Dario Astorga](https://github.com/dastorga) 
-* [Matias Bernal](https://github.com/Matias-Bernal)
+* [Astorga Dario](https://github.com/dastorga) 
+* [Bernal Matias](https://github.com/Matias-Bernal)
