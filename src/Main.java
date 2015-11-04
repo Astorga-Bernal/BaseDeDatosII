@@ -9,7 +9,7 @@ public class Main {
 		String conf = "";
         if (args.length > 0) {
             conf = args[0];
-        }    
+        }
         Settings.setConf(conf);
         Settings.getUrl_baseA();
         Settings.getUsernameA();
