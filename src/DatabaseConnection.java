@@ -25,4 +25,13 @@ public class DatabaseConnection {
 		}
 	}
 
+	public DatabaseMetaData newMataData() throws SQLException {
+		try {
+			DatabaseMetaData mdBasea = connection.getMetaData();
+			return mdBasea;
+		} catch (Exception e) {
+			throw new SQLException();
+		}
+	}
+
 }

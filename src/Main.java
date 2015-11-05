@@ -1,5 +1,7 @@
 package src;
 
+import src.metadata.Metadata;
+import src.mysql.Table;
 import src.utils.Settings;
 
 public class Main {
@@ -16,5 +18,11 @@ public class Main {
 		DatabaseConnection databaseB = new DatabaseConnection(Settings.getUrl_baseB(), Settings.getUsernameB(),
 				Settings.getPasswordB());
 
+		Metadata a = new Metadata("basea",databaseA);
+		for(Table s: a.getTables()){
+			System.out.println(s.getName() + "\n");
+		}
+		
+		
 	}
 }
