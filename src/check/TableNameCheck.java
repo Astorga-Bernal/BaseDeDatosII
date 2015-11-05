@@ -1,0 +1,56 @@
+package src.check;
+
+import src.mysql.Schema;
+import src.mysql.Table;
+
+public class TableNameCheck {
+
+	private Schema schemaA;
+	private Schema schemaB;
+
+	public TableNameCheck() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public void check() {
+		//Chequeo de tablas del esquema A
+		for (Table t1:schemaA.getTables() ){
+			boolean exist = false;
+			for (Table t2:schemaB.getTables() ){
+				if(t1.getName().equals(t2.getName())){
+					exist = true;
+					break;
+				}
+			}
+			if (!exist) 
+				System.out.println(t1.getName() + "No existe en "+ schemaA.getName());
+		}
+		
+		//Chequeo de tablas del esquema B
+		for (Table t1:schemaB.getTables() ){
+			boolean exist = false;
+			for (Table t2:schemaA.getTables() ){
+				if(t1.getName().equals(t2.getName())){
+					exist = true;
+					break;
+				}
+			}
+			if (!exist) 
+				System.out.println(t1.getName() + "No existe en "+ schemaB.getName());
+		}
+		
+		//Chequeo de tablas en ambos esquemas
+		for (Table t1:schemaA.getTables() ){
+			for (Table t2:schemaB.getTables() ){
+				if(t1.getName().equals(t2.getName())){
+					System.out.println(t1.getName()+"Esta en ambos schemas");
+					break;
+				}
+			}
+			
+		}
+
+	}
+
+}
