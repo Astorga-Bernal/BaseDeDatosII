@@ -5,16 +5,18 @@ import java.util.LinkedList;
 public class ForeingKey {
 
 	private String name;
+	private String table;
 	private LinkedList<Column> colums;
-	private Restiction restriction;
+	private LinkedList<Restiction> restriction;
 
 	public ForeingKey() {
 		super();
 	}
 
-	public ForeingKey(String name, LinkedList<Column> colums, Restiction restriction) {
+	public ForeingKey(String name, String table, LinkedList<Column> colums, LinkedList<Restiction> restriction) {
 		super();
 		this.name = name;
+		this.table = table;
 		this.colums = colums;
 		this.restriction = restriction;
 	}
@@ -27,6 +29,14 @@ public class ForeingKey {
 		this.name = name;
 	}
 
+	public String getTable() {
+		return table;
+	}
+
+	public void setTable(String table) {
+		this.table = table;
+	}
+
 	public LinkedList<Column> getColums() {
 		return colums;
 	}
@@ -35,11 +45,11 @@ public class ForeingKey {
 		this.colums = colums;
 	}
 
-	public Restiction getRestriction() {
+	public LinkedList<Restiction> getRestriction() {
 		return restriction;
 	}
 
-	public void setRestriction(Restiction restriction) {
+	public void setRestriction(LinkedList<Restiction> restriction) {
 		this.restriction = restriction;
 	}
 

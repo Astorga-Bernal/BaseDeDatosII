@@ -15,8 +15,8 @@ public class Main {
 		Settings.setConf(conf);
 		DatabaseConnection databaseA = new DatabaseConnection(Settings.getUrl_baseA(), Settings.getUsernameA(),
 				Settings.getPasswordA());
-		DatabaseConnection databaseB = new DatabaseConnection(Settings.getUrl_baseB(), Settings.getUsernameB(),
-				Settings.getPasswordB());
+//		DatabaseConnection databaseB = new DatabaseConnection(Settings.getUrl_baseB(), Settings.getUsernameB(),
+//				Settings.getPasswordB());
 
 		Metadata a = new Metadata("basea",databaseA);
 		for(Table s: a.getTables()){
