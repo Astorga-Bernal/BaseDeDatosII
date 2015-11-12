@@ -20,7 +20,6 @@ public enum ActionEvent {
 			return ActionEvent.DELETE;
 		case 1:
 			return ActionEvent.UPDATE;
-			
 		}
 		return null;
 	}
