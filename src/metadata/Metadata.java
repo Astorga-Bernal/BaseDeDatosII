@@ -7,6 +7,10 @@ import java.util.LinkedList;
 
 import src.DatabaseConnection;
 import src.mysql.Column;
+import src.mysql.ForeingKey;
+import src.mysql.Index;
+import src.mysql.PrimaryKey;
+import src.mysql.Restiction;
 import src.mysql.Table;
 import src.mysql.Type;
 import src.mysql.SQLType;
@@ -46,28 +50,95 @@ public class Metadata {
 		LinkedList<Table> tables = new LinkedList<Table>();
 		String[] types = {TableType.TABLE.toString()};
 		try {
-			ResultSet rst = databaseconnection.newMataData().getTables(null, schema,"%", types);
-			while (rst.next()) {
-				Table tabla = new Table();
-				tabla.setName(rst.getString(3)); //Nombre
-				tabla.setColums(getColums(tabla.getName())); //Columnas
-//				tabla.setPrimarykey(getStprimaryKey(tabla.getName())); //Primary Key
-//				tabla.setIndexs(getIndex(tabla.getName())); //Indexs
+			ResultSet rs = databaseconnection.newMataData().getTables(null, schema,"%", types);
+			while (rs.next()) {
+				Table tabla = new Table();	
+				tabla.setName(rs.getString(3)); 
+
+				System.out.print("***Datos de Tabla***");System.out.print("\n"); 
+				System.out.println("  catalogo: " + rs.getString(1));
+				System.out.println("  esquema: " + rs.getString(2));
+				System.out.println("  nombre: " + rs.getString(3));
+				System.out.println("  tipo: " + rs.getString(4));
+				System.out.println("  comentarios: " + rs.getString(5));
+
+				ResultSet rsPrimaryKey = databaseconnection.newMataData().getPrimaryKeys(rs.getString(1), rs.getString(2), rs.getString(3));
+				System.out.print("-Primary Keys: "); System.out.print("\n"); 
+				while(rsPrimaryKey.next()) {
+					Column columna = new Column();
+					LinkedList<Column> columns = new LinkedList<Column>();
+					System.out.print("  "+ rsPrimaryKey.getString("PK_NAME")); 
+					System.out.print("  "+ rsPrimaryKey.getString("COLUMN_NAME")); 
+					columna.setName(rsPrimaryKey.getString("COLUMN_NAME"));
+					columns.add(columna);
+					PrimaryKey primaryKey = new PrimaryKey(rsPrimaryKey.getString("PK_NAME"),columns);
+					tabla.setPrimarykey(primaryKey);
+				}
+
+				ResultSet rsColumn = databaseconnection.newMataData().getColumns(rs.getString(1), rs.getString(2), rs.getString(3), "%");
+				System.out.print("-Columnas: "); System.out.print("\n"); 
+				while(rsColumn.next()) {
+					LinkedList<Column> columns = new LinkedList<Column>();
+					Column column = new Column();
+					column.setName(rsColumn.getString("COLUMN_NAME"));System.out.print("  "+rsColumn.getString("COLUMN_NAME") );
+					Type type = new Type(SQLType.getType(rsColumn.getInt("DATA_TYPE")),(rsColumn.getInt("COLUMN_SIZE")));	
+					column.setType(type);
+					column.setDefaultvalue(rsColumn.getString("COLUMN_DEF"));System.out.print("  "+rsColumn.getString("COLUMN_DEF") );
+					if (rsColumn.getInt("NULLABLE") == 1) {
+						column.setNullable(true);
+						System.out.print(" YES NULL");
+					} else {
+						column.setNullable(false);
+						System.out.print(" NOT NULL");
+					}
+					System.out.print("\n"); 
+					columns.add(column);
+					tabla.setColums(columns);
+				}
+
+				ResultSet rsIndexs = databaseconnection.newMataData().getIndexInfo(rs.getString(1), rs.getString(2), rs.getString(3), true, false);
+				System.out.print("-Indexs: "); System.out.print("\n"); 
+				while(rsIndexs.next()) {
+					LinkedList<Column> columns = new LinkedList<Column>();
+					LinkedList<Index> indexs = new LinkedList<Index>();
+					Column column = new Column();
+					column.setName(rsIndexs.getString("COLUMN_NAME"));
+					columns.add(column);
+					Index index = new Index(rsIndexs.getString("INDEX_NAME"),columns);
+					indexs.add(index);
+					tabla.setIndexs(indexs);
+				}
 				
-				tables.add(tabla);
+				ResultSet rsForeingKey = databaseconnection.newMataData().getImportedKeys(rs.getString(1), rs.getString(2), rs.getString(3));
+				System.out.print("-ForeingKey: "); System.out.print("\n"); 
+				while(rsForeingKey.next()) {
+					LinkedList<ForeingKey> foreingkeys = new LinkedList<ForeingKey>();
+					Restiction restiction = new Restiction();
+					
+					rsForeingKey.getString("FKCOLUMN_NAME"); //A la columna que hace referencia
+					rsForeingKey.getString("FK_NAME");
+					//rsForeingKey.getString();
+					
+					ForeingKey foreingKey = new ForeingKey();
+					foreingkeys.add(foreingKey);
+					tabla.setForeingkeys(foreingkeys);
+				}
+				
+				tables.add(tabla); 
+				System.out.print("\n"); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return tables;
 	}
-	
+
 	public LinkedList<Column> getColums(String table_name) {
 		LinkedList<Column> columns = new LinkedList<Column>();
 		try {
 			ResultSet rsc = databaseconnection.newMataData().getColumns(null, schema, table_name, "%");
 			while(rsc.next()){
- 				Column columna = new Column();
+				Column columna = new Column();
 				columna.setName(rsc.getString("COLUMN_NAME"));
 				Type type = new Type(SQLType.getType(rsc.getInt("DATA_TYPE")), Integer.valueOf(rsc.getInt("COLUMN_SIZE")));	
 				columna.setType(type);
@@ -81,5 +152,11 @@ public class Metadata {
 		}
 		return columns;
 	}
+
+
+	//	tabla.setName(rst.getString(3)); //Nombre
+	//	tabla.setColums(getColums(tabla.getName())); //Columnas
+	//	tabla.setPrimarykey(getStprimaryKey(tabla.getName())); //Primary Key
+	//	tabla.setIndexs(getIndex(tabla.getName())); //Indexs
 
 }

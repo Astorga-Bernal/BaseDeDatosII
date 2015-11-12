@@ -5,7 +5,7 @@ import java.util.LinkedList;
 public class PrimaryKey {
 
 	private String name;
-	private LinkedList<Column> colums;
+	private LinkedList<Column> columns;
 
 	public PrimaryKey() {
 		super();
@@ -14,7 +14,7 @@ public class PrimaryKey {
 	public PrimaryKey(String name, LinkedList<Column> colums) {
 		super();
 		this.name = name;
-		this.colums = colums;
+		this.columns = colums;
 	}
 
 	public String getName() {
@@ -26,11 +26,11 @@ public class PrimaryKey {
 	}
 
 	public LinkedList<Column> getColums() {
-		return colums;
+		return columns;
 	}
 
 	public void setColums(LinkedList<Column> colums) {
-		this.colums = colums;
+		this.columns = colums;
 	}
 
 }

@@ -11,7 +11,7 @@ public class Column {
 		super();
 	}
 
-	public Column(String name, Type type, String defaultvalue, boolean nullable) {
+	public Column(String name, Type type, String defaultvalue, boolean nullable, Integer lengthType) {
 		super();
 		this.name = name;
 		this.type = type;

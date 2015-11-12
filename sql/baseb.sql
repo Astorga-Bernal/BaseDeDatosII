@@ -10,7 +10,7 @@ CREATE TABLE cliente (
   apellido varchar(45) NOT NULL default '', -- Considero que el apellido sea Varchar y por defecto vacio
   dereccion varchar(45) NOT NULL default '', -- Considero que la direccion sea Varchar y por defecto vacio
   telefono int(20), -- Considero que el telefono contiene una longitud de 20 numeros
-  CONSTRAINT pk_nro_cliente PRIMARY KEY (nro_cliente) -- Clave primaria en (MySQL)
+  CONSTRAINT pk_nro_cliente PRIMARY KEY (nro_cliente,nombre) -- Clave primaria en (MySQL)
 );
 -- Insercion de datos a tabla "Cliente"
 INSERT INTO cliente (nro_cliente,nombre,apellido,dereccion,telefono) 
