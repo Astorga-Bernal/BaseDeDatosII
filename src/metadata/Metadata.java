@@ -6,6 +6,8 @@ import java.sql.Types;
 import java.util.LinkedList;
 
 import src.DatabaseConnection;
+import src.mysql.Action;
+import src.mysql.ActionEvent;
 import src.mysql.Column;
 import src.mysql.ForeingKey;
 import src.mysql.Index;
@@ -86,10 +88,10 @@ public class Metadata {
 					column.setDefaultvalue(rsColumn.getString("COLUMN_DEF"));System.out.print("  "+rsColumn.getString("COLUMN_DEF") );
 					if (rsColumn.getInt("NULLABLE") == 1) {
 						column.setNullable(true);
-						System.out.print(" YES NULL");
+						System.out.print("NULLABLE YES NULL");
 					} else {
 						column.setNullable(false);
-						System.out.print(" NOT NULL");
+						System.out.print("NULLABLE NOT NULL");
 					}
 					System.out.print("\n"); 
 					columns.add(column);
@@ -108,22 +110,32 @@ public class Metadata {
 					indexs.add(index);
 					tabla.setIndexs(indexs);
 				}
-				
+
 				ResultSet rsForeingKey = databaseconnection.newMataData().getImportedKeys(rs.getString(1), rs.getString(2), rs.getString(3));
 				System.out.print("-ForeingKey: "); System.out.print("\n"); 
 				while(rsForeingKey.next()) {
+
+					LinkedList<Column> columns = new LinkedList<Column>();
+					Column column = new Column();
+					column.setName(rsForeingKey.getString("FKCOLUMN_NAME"));
+					columns.add(column);
+
+					Restiction restriction = new Restiction();
+					System.out.print("FKCOLUMN_NAME   " + rsForeingKey.getString("FKCOLUMN_NAME"));System.out.print("\n"); 
+
+					System.out.print("UPDATE_RULE     " + rsForeingKey.getShort(("UPDATE_RULE")));System.out.print("\n"); 
+					ActionEvent.getActionActionEvent(rsForeingKey.getShort(("UPDATE_RULE")));
+
+					System.out.print("DELETE_RULE     " + rsForeingKey.getShort("DELETE_RULE"));System.out.print("\n"); 
+					restriction.setAction(Action.getAction(rsForeingKey.getShort("DELETE_RULE")));
+
 					LinkedList<ForeingKey> foreingkeys = new LinkedList<ForeingKey>();
-					Restiction restiction = new Restiction();
-					
-					rsForeingKey.getString("FKCOLUMN_NAME"); //A la columna que hace referencia
-					rsForeingKey.getString("FK_NAME");
-					//rsForeingKey.getString();
-					
-					ForeingKey foreingKey = new ForeingKey();
+					ForeingKey foreingKey = new ForeingKey(rsForeingKey.getString("FK_NAME"), columns, restriction);
 					foreingkeys.add(foreingKey);
+
 					tabla.setForeingkeys(foreingkeys);
 				}
-				
+
 				tables.add(tabla); 
 				System.out.print("\n"); 
 			}

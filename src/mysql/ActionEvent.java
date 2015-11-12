@@ -14,4 +14,14 @@ public enum ActionEvent {
 		return null;
 	}
 
+	public static ActionEvent getActionActionEvent(int typeActionEvent){
+		switch (typeActionEvent) {
+		case 0:
+			return ActionEvent.DELETE;
+		case 1:
+			return ActionEvent.UPDATE;
+			
+		}
+		return null;
+	}
 }
