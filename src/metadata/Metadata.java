@@ -14,6 +14,7 @@ import src.mysql.Index;
 import src.mysql.PrimaryKey;
 import src.mysql.Restiction;
 import src.mysql.Table;
+import src.mysql.Trigger;
 import src.mysql.Type;
 import src.mysql.UniqueKey;
 import src.mysql.SQLType;
@@ -154,6 +155,13 @@ public class Metadata {
 					
 					tabla.setUniquekeys(uniqueKeys);
 				}
+				
+				//LinkedList<Trigger> trigges;
+				//ResultSet rsTrigges = databaseconnection.newMataData().get(rs.getString(1), rs.getString(2), rs.getString(3), true, false);
+//				System.out.print("-Uniquekeys: "); System.out.print("\n"); 
+//				while(rsTrigges.next()) {
+//					
+//				}
 				
 				tables.add(tabla); 
 				System.out.print("\n"); 
