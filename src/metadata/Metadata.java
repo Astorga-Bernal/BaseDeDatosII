@@ -15,6 +15,7 @@ import src.mysql.PrimaryKey;
 import src.mysql.Restiction;
 import src.mysql.Table;
 import src.mysql.Type;
+import src.mysql.UniqueKey;
 import src.mysql.SQLType;
 
 public class Metadata {
@@ -136,6 +137,24 @@ public class Metadata {
 					tabla.setForeingkeys(foreingkeys);
 				}
 
+				ResultSet rsUniqueKey = databaseconnection.newMataData().getIndexInfo(rs.getString(1), rs.getString(2), rs.getString(3), true, false);
+				System.out.print("-Uniquekeys: "); System.out.print("\n"); 
+				while(rsUniqueKey.next()) {
+					
+					System.out.print(rsUniqueKey.getString("COLUMN_NAME"));
+					LinkedList<Column> columns = new LinkedList<Column>();
+					Column column = new Column();
+					column.setName(rsUniqueKey.getString("COLUMN_NAME"));
+					columns.add(column);
+					
+					System.out.print(rsUniqueKey.getString("INDEX_NAME"));
+					LinkedList<UniqueKey> uniqueKeys = new LinkedList<UniqueKey>();
+					UniqueKey uniqueKey = new UniqueKey(rsUniqueKey.getString("INDEX_NAME"),columns);
+					uniqueKeys.add(uniqueKey);
+					
+					tabla.setUniquekeys(uniqueKeys);
+				}
+				
 				tables.add(tabla); 
 				System.out.print("\n"); 
 			}
