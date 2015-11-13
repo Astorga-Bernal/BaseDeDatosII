@@ -20,7 +20,8 @@ public class Main {
 
 		Metadata a = new Metadata("basea",databaseA);
 		for(Table s: a.getTables()){
-			System.out.println(s.getName() + "\n");
+//			System.out.println(s.getColums() + "\n");
+//			System.out.println(s.getName() + "\n");
 		}
 		
 		
