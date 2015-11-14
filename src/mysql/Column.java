@@ -50,5 +50,12 @@ public class Column {
 	public void setNullable(boolean nullable) {
 		this.nullable = nullable;
 	}
+	
+	public boolean equals(Column column){
+		boolean eq = true;
+		eq &= name.equals(column.getName());
+		eq &= type.equals(column.getType());
+		return eq;
+	}
 
 }

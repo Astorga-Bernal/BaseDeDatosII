@@ -2,7 +2,7 @@ package src.mysql;
 
 public class Type {
 
-	private SQLType type;
+	private SQLType sqltype;
 	private Integer length;
 
 	public Type() {
@@ -11,16 +11,16 @@ public class Type {
 
 	public Type(SQLType type, Integer length) {
 		super();
-		this.type = type;
+		this.sqltype = type;
 		this.length = length;
 	}
 
-	public SQLType getType() {
-		return type;
+	public SQLType getSQLType() {
+		return sqltype;
 	}
 
-	public void setType(SQLType type) {
-		this.type = type;
+	public void setSQLType(SQLType type) {
+		this.sqltype = type;
 	}
 
 	public Integer getLength() {
@@ -29,6 +29,13 @@ public class Type {
 
 	public void setLength(Integer length) {
 		this.length = length;
+	}
+	
+	public boolean equals(Type type){
+		boolean eq = true;
+		eq &= length.equals(type.getLength());
+		eq &= sqltype.equals(type.getSQLType());
+		return eq;
 	}
 
 }

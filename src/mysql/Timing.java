@@ -14,4 +14,14 @@ public enum Timing {
 		return null;
 	}
 
+	public static Timing getType(String type) {
+		switch (type) {
+		case "AFTER":
+			return Timing.AFTER;
+		case "BEFORE":
+			return Timing.BEFORE;
+		}
+		return null;
+	}
+
 }

@@ -15,5 +15,18 @@ public enum Event {
 			}
 			return null;
 		}
+		
+		public static Event getType(String type){
+			switch (type) {
+			case "INSERT":
+				return Event.INSERT;
+			case "DELETE":
+				return Event.DELETE;
+			case "UPDATE":
+				return Event.UPDATE;
+			}
+
+			return null;
+		}
 
 }

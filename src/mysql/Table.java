@@ -83,5 +83,18 @@ public class Table {
 	public void setTrigges(LinkedList<Trigger> trigges) {
 		this.trigges = trigges;
 	}
+	
+	public boolean equals(Table tabla){
+		boolean eq = true;
+		eq &= name.equals(tabla.getName());
+		eq &= colums.equals(tabla.getColums());
+		eq &= primarykey.equals(tabla.getPrimarykey());
+		eq &= indexs.equals(tabla.getIndexs());
+		eq &= foreingkeys.equals(tabla.getForeingkeys());
+		eq &= uniquekeys.equals(tabla.getUniquekeys());
+		eq &= trigges.equals(tabla.getTrigges());
+		return eq;
+	}
+	
 
 }
