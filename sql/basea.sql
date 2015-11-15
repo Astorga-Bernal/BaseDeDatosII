@@ -94,3 +94,16 @@ DELIMITER //
 		
 	END//
 DELIMITER ;
+
+
+delimiter //
+CREATE PROCEDURE simpleproc (OUT param1 INT)
+BEGIN
+	SELECT COUNT(*) INTO param1 FROM t;
+END//
+
+CREATE FUNCTION hello (s CHAR(20))
+ RETURNS CHAR(50) DETERMINISTIC
+ RETURN CONCAT('Hello, ',s,'!');
+
+-- SELECT hello('world');
