@@ -13,22 +13,21 @@ public class TableCheck {
 		this.schemaA = schemaA;
 		this.schemaB = schemaB;
 	}
-	
+
 	public void check() {
-		//Chequeo de tablas del esquema A
+		//Chequeo de tablas del esquema A y no en B
 		for (Table t1:schemaA.getTables() ){
 			boolean exist = false;
 			for (Table t2:schemaB.getTables() ){
 				if(t1.equals(t2)){
 					exist = true;
 					break;
-					
 				}
 			}
 			if (!exist) 
-				System.out.println(t1.getName() + "No existe en "+ schemaA.getName());
+				System.out.println("La tabla "+ t1.getName() + " del schema " + schemaA.getName() + " no existe en el schema "+ schemaB.getName());
 		}
-		
+
 		//Chequeo de tablas del esquema B
 		for (Table t1:schemaB.getTables() ){
 			boolean exist = false;
@@ -41,7 +40,7 @@ public class TableCheck {
 			if (!exist) 
 				System.out.println(t1.getName() + "No existe en "+ schemaB.getName());
 		}
-		
+
 		//Chequeo de tablas en ambos esquemas
 		for (Table t1:schemaA.getTables() ){
 			for (Table t2:schemaB.getTables() ){
@@ -50,9 +49,8 @@ public class TableCheck {
 					break;
 				}
 			}
-			
-		}
 
+		}
 	}
 
 }
