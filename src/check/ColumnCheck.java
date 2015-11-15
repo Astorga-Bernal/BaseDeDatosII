@@ -22,10 +22,17 @@ public class ColumnCheck {
 				if(c1.equals(c2)){
 					exist = true;
 					break;
+				}else if (c1.getName().equals(c2.getName())) {
+					System.out.println(
+							">>>>>>>>>> LAS TABLAS TIENEN LA MISMA COLUMNA: " + c1.getName() + " NO DEL MISMO TIPO");
+					System.out.println(">>>>>>>>>> COLUMNA: "+c1.getName()+" - TIPO: "+ c1.getType().toString());
+					System.out.println(">>>>>>>>>> COLUMNA: "+c2.getName()+" - TIPO: "+ c2.getType().toString());					
+					exist = true;
+					break;
 				}
 			}
 			if (!exist) 
-				System.out.println("La columna "+ c1.getName() + " de la tabla " + tableA.getName()  + " no existe en la tabla "+ tableB.getName());
+				System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() + " DE " + tableA.getName()  + " NO EXISTE EN "+ tableB.getName());
 		}
 
 		//Chequeo de columnas de la tabla B
@@ -35,17 +42,20 @@ public class ColumnCheck {
 				if(c1.getName().equals(c2.getName())){
 					exist = true;
 					break;
+				}else if (c1.getName().equals(c2.getName())) {
+					exist = true;
+					break;
 				}
 			}
 			if (!exist) 
-				System.out.println("La columna "+ c1.getName() + " no existe en "+ tableB.getName());
+				System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() + " DE " + tableB.getName()  + " NO EXISTE EN "+ tableA.getName());
 		}
 
 		//Chequeo de columnas en ambas tablas
 		for (Column c1:tableA.getColums() ){
 			for (Column c2:tableB.getColums() ){
 				if(c1.getName().equals(c2.getName())){
-					System.out.println("La columna "+ c1.getName() +" esta en ambos schemas");
+					System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() +" - TIPO: "+ c1.getType().toString() + " EXISTE EN AMBAS TABAS");
 					break;
 				}
 			}

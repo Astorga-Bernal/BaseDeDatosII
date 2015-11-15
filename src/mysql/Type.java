@@ -38,4 +38,10 @@ public class Type {
 		return eq;
 	}
 
+	public String toString(){
+		if(length>0)
+			return sqltype.toString()+"("+length+")";
+		else
+			return sqltype.toString();
+	}
 }

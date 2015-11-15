@@ -57,8 +57,32 @@ public class ForeingKey {
 		boolean eq = true;
 		eq &= name.equals(foreingKey.getName());
 		eq &= table.equals(foreingKey.getTable());
-		eq &= colums.equals(foreingKey.getColums());
-		eq &= restriction.equals(foreingKey.getRestriction());
+		boolean eqColum = false;
+		for (Column c1 : colums) {
+			eqColum = false;
+			for (Column c2 : foreingKey.getColums()) {
+				if (c1.equals(c2)) {
+					eqColum = true;
+					break;
+				}
+			}
+			if(!eqColum)
+				break;
+		}
+		eq &= eqColum || (colums.isEmpty() && foreingKey.getColums().isEmpty());
+		boolean eqRestrictions = false;
+		for (Restiction r1 : restriction) {
+			eqRestrictions = false;
+			for (Restiction r2 : foreingKey.getRestriction()) {
+				if (r1.equals(r2)) {
+					eqRestrictions = true;
+					break;
+				}
+			}
+			if(!eqRestrictions)
+				break;
+		}
+		eq &= eqRestrictions || (restriction.isEmpty() && foreingKey.getRestriction().isEmpty());
 		return eq;
 	}
 }

@@ -36,7 +36,18 @@ public class UniqueKey {
 	public boolean equals(UniqueKey uniqueKey){
 		boolean eq = true;
 		eq &= name.equals(uniqueKey.getName());
-		eq &= colums.equals(uniqueKey.getColums());
-		return eq;
+		boolean eqColum = false;
+		for (Column c1 : colums) {
+			eqColum = false;
+			for (Column c2 : uniqueKey.getColums()) {
+				if (c1.equals(c2)) {
+					eqColum = true;
+					break;
+				}
+			}
+			if(!eqColum)
+				break;
+		}
+		return eq &= eqColum || (colums.isEmpty() && uniqueKey.getColums().isEmpty());
 	}
 }

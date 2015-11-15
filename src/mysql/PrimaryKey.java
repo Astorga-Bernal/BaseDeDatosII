@@ -36,7 +36,18 @@ public class PrimaryKey {
 	public boolean equals(PrimaryKey primaryKey){
 		boolean eq = true;
 		eq &= name.equals(primaryKey.getName());
-		eq &= columns.equals(primaryKey.getColums());
-		return eq;
+		boolean eqColum = false;
+		for (Column c1 : columns) {
+			eqColum = false;
+			for (Column c2 : primaryKey.getColums()) {
+				if (c1.equals(c2)) {
+					eqColum = true;
+					break;
+				}
+			}
+			if(!eqColum)
+				break;
+		}
+		return eq &= eqColum || (columns.isEmpty() && primaryKey.getColums().isEmpty());
 	}
 }

@@ -12,15 +12,20 @@ import src.mysql.Event;
 import src.mysql.ForeingKey;
 import src.mysql.Function;
 import src.mysql.Index;
+import src.mysql.ParameterType;
+import src.mysql.FunctionParameter;
 import src.mysql.PrimaryKey;
+import src.mysql.ProcedureParameter;
 import src.mysql.Restiction;
 import src.mysql.SQLType;
 import src.mysql.Schema;
+import src.mysql.StoredProcedure;
 import src.mysql.Table;
 import src.mysql.Timing;
 import src.mysql.Trigger;
 import src.mysql.Type;
 import src.mysql.UniqueKey;
+import src.mysql.View;
 
 public class Metadata {
 
@@ -37,23 +42,8 @@ public class Metadata {
 		this.schema.setName(schema);
 		this.schema.setTables(getTables());
 		this.schema.setFunctions(getFunctions());
-		this.schema.setStoreprocedures(null);
-		this.schema.setViews(null);
-	}
-
-	private LinkedList<Function> getFunctions() {
-		LinkedList<Function> functions = new LinkedList<Function>();
-		try {
-			ResultSet rst = databaseconnection.newMataData().getProcedureColumns(null, schema.getName(), "%", "%");
-			while (rst.next()) {
-				Function funtion = new Function();
-//				funtion.
-				
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return functions;
+		this.schema.setStoreprocedures(getStoreProcedures());
+		this.schema.setViews(getViews());
 	}
 
 	public Schema getSchema() {
@@ -70,6 +60,108 @@ public class Metadata {
 
 	public void setDatabaseconnection(DatabaseConnection databaseconnection) {
 		this.databaseconnection = databaseconnection;
+	}
+
+	@SuppressWarnings("static-access")
+	private LinkedList<View> getViews() {
+		LinkedList<View> views = new LinkedList<View>();
+		String[] types = { TableType.VIEW.toString() };
+		try {
+			ResultSet rst = databaseconnection.newMataData().getTables(null, schema.getName(), "%", types);
+			while (rst.next()) {
+				View view = new View();
+				view.setName(rst.getString("TABLE_NAME"));
+				ResultSet rsaux = databaseconnection.NewStatement()
+						.executeQuery("SELECT * FROM information_schema.VIEWS v WHERE v.TABLE_NAME='" + view.getName()
+								+ "' and v.TABLE_SCHEMA='" + schema.getName() + "';");
+				if (rsaux.next())
+					view.setQuery(rsaux.getString("VIEW_DEFINITION"));
+				views.add(view);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return views;
+	}
+
+	@SuppressWarnings("static-access")
+	private LinkedList<StoredProcedure> getStoreProcedures() {
+		LinkedList<StoredProcedure> storeproductions = new LinkedList<StoredProcedure>();
+		try {
+			ResultSet rst = databaseconnection.NewStatement()
+					.executeQuery("SELECT * FROM information_schema.ROUTINES r WHERE r.ROUTINE_SCHEMA='"+schema.getName()+"' AND r.ROUTINE_TYPE='PROCEDURE';");
+			while (rst.next()) {
+				StoredProcedure storeprocedure = new StoredProcedure();
+				storeprocedure.setName(rst.getString("ROUTINE_NAME"));
+				ResultSet rsaux = databaseconnection.NewStatement()
+						.executeQuery("SELECT * FROM information_schema.ROUTINES r WHERE r.ROUTINE_SCHEMA='"
+								+ schema.getName() + "' AND r.ROUTINE_NAME='" + storeprocedure.getName()
+								+ "' AND r.ROUTINE_TYPE='PROCEDURE';");
+				if (rsaux.next()) {
+					storeprocedure.setCode(rsaux.getString("ROUTINE_DEFINITION"));
+					ResultSet rsaux2 = databaseconnection.NewStatement()
+							.executeQuery("SELECT * FROM information_schema.PARAMETERS p where p.SPECIFIC_NAME='"
+									+ storeprocedure.getName() + "' and p.SPECIFIC_SCHEMA='" + schema.getName()
+									+ "';");
+					LinkedList<ProcedureParameter> parameters = new LinkedList<ProcedureParameter>();
+					while (rsaux2.next()) {
+						ProcedureParameter parameter = new ProcedureParameter();
+						parameter.setName(rsaux2.getString("PARAMETER_NAME"));
+						Type typep = new Type(SQLType.getType(rsaux2.getString("DATA_TYPE").toUpperCase()),
+								Integer.valueOf(rsaux2.getInt("CHARACTER_MAXIMUM_LENGTH")));
+						parameter.setType(typep);
+						ParameterType typep2 = ParameterType.getType(rsaux2.getString("PARAMETER_MODE").toUpperCase());
+						parameter.setParameterType(typep2);
+						parameters.add(parameter);
+					}
+					storeprocedure.setParameters(parameters);
+					storeproductions.add(storeprocedure);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return storeproductions;
+	}
+
+	@SuppressWarnings("static-access")
+	private LinkedList<Function> getFunctions() {
+		LinkedList<Function> functions = new LinkedList<Function>();
+		try {
+			ResultSet rst = databaseconnection.newMataData().getFunctions(null, schema.getName(), "%");
+			while (rst.next()) {
+				Function function = new Function();
+				function.setName(rst.getString("FUNCTION_NAME"));
+				ResultSet rsaux = databaseconnection.NewStatement()
+						.executeQuery("SELECT * FROM information_schema.ROUTINES r WHERE r.ROUTINE_SCHEMA='"
+								+ schema.getName() + "' AND r.ROUTINE_NAME='" + function.getName()
+								+ "' AND r.ROUTINE_TYPE='FUNCTION';");
+				if (rsaux.next()) {
+					function.setCode(rsaux.getString("ROUTINE_DEFINITION"));
+					Type type = new Type(SQLType.getType(rsaux.getString("DATA_TYPE").toUpperCase()),
+							Integer.valueOf(rsaux.getInt("CHARACTER_MAXIMUM_LENGTH")));
+					function.setReturntype(type);
+					ResultSet rsaux2 = databaseconnection.NewStatement()
+							.executeQuery("SELECT * FROM information_schema.PARAMETERS p where p.SPECIFIC_NAME='"
+									+ function.getName() + "' and p.SPECIFIC_SCHEMA='" + schema.getName()
+									+ "' and PARAMETER_MODE='IN';");
+					LinkedList<FunctionParameter> parameters = new LinkedList<FunctionParameter>();
+					while (rsaux2.next()) {
+						FunctionParameter parameter = new FunctionParameter();
+						parameter.setName(rsaux2.getString("PARAMETER_NAME"));
+						Type typep = new Type(SQLType.getType(rsaux2.getString("DATA_TYPE").toUpperCase()),
+								Integer.valueOf(rsaux2.getInt("CHARACTER_MAXIMUM_LENGTH")));
+						parameter.setType(typep);
+						parameters.add(parameter);
+					}
+					function.setParameters(parameters);
+					functions.add(function);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return functions;
 	}
 
 	public LinkedList<Table> getTables() {
@@ -217,10 +309,10 @@ public class Metadata {
 	}
 
 	private PrimaryKey getStprimaryKey(Table tabla) {
-		PrimaryKey primaryKey = new PrimaryKey();
 		try {
 			ResultSet rsc = databaseconnection.newMataData().getPrimaryKeys(null, schema.getName(), tabla.getName());
-			while (rsc.next()) {
+			if (rsc.next()) {
+				PrimaryKey primaryKey = new PrimaryKey();
 				primaryKey.setName(rsc.getString("PK_NAME"));
 				LinkedList<Column> columns = new LinkedList<Column>();
 				String columname = rsc.getString("COLUMN_NAME");
@@ -229,11 +321,13 @@ public class Metadata {
 						columns.add(c);
 				}
 				primaryKey.setColums(columns);
+				return primaryKey;
+		
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return primaryKey;
+		return null;
 	}
 
 	public LinkedList<Column> getColums(Table tabla) {

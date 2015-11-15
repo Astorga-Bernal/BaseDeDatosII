@@ -31,4 +31,10 @@ public class Restiction {
 		this.action = action;
 	}
 
+	public boolean equals(Restiction restiction){
+		boolean eq = true;
+		eq &= event.equals(restiction.getEvent());
+		eq &= action.equals(restiction.getAction());
+		return eq;
+	}
 }

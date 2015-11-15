@@ -6,14 +6,14 @@ public class Function {
 
 	private String name;
 	private Type returntype;
-	private LinkedList<Parameter> parameters;
+	private LinkedList<FunctionParameter> parameters;
 	private String code;
 
 	public Function() {
 		super();
 	}
 
-	public Function(String name, Type returntype, LinkedList<Parameter> parameters, String code) {
+	public Function(String name, Type returntype, LinkedList<FunctionParameter> parameters, String code) {
 		super();
 		this.name = name;
 		this.returntype = returntype;
@@ -37,11 +37,11 @@ public class Function {
 		this.returntype = returntype;
 	}
 
-	public LinkedList<Parameter> getParameters() {
+	public LinkedList<FunctionParameter> getParameters() {
 		return parameters;
 	}
 
-	public void setParameters(LinkedList<Parameter> parameters) {
+	public void setParameters(LinkedList<FunctionParameter> parameters) {
 		this.parameters = parameters;
 	}
 

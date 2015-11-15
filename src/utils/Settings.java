@@ -2,12 +2,30 @@ package src.utils;
 
 public class Settings {
 
-	private static String url_baseA = "jdbc:mysql://localhost/basea";
-	private static String usernameA = "root";
-	private static String passwordA = "roor";
-	private static String url_baseB = "jdbc:mysql://localhost/baseb";
-	private static String usernameB = "root";
-	private static String passwordB = "root";
+	private static String url_baseA;
+	private static String usernameA;
+	private static String passwordA;
+	private static String schemaA;
+	private static String url_baseB;
+	private static String usernameB;
+	private static String passwordB;
+	private static String schemaB;
+
+	public static String getSchemaA() {
+		return schemaA;
+	}
+
+	public static void setSchemaA(String schemaA) {
+		Settings.schemaA = schemaA;
+	}
+
+	public static String getSchemaB() {
+		return schemaB;
+	}
+
+	public static void setSchemaB(String schemaB) {
+		Settings.schemaB = schemaB;
+	}
 
 	public static String getUrl_baseA() {
 		return url_baseA;
@@ -62,10 +80,12 @@ public class Settings {
 			nameFile = "conf.ini";
 		}
 		ConfInit ini = new ConfInit(nameFile);
-		url_baseA = ini.getParameters("url_baseA");
+		schemaA = ini.getParameters("schemaA");
+		url_baseA = ini.getParameters("url_baseA")+schemaA;
 		usernameA = ini.getParameters("usernameA");
 		passwordA = ini.getParameters("passwordA");
-		url_baseB = ini.getParameters("url_baseB");
+		schemaB = ini.getParameters("schemaB");
+		url_baseB = ini.getParameters("url_baseB")+schemaB;
 		usernameB = ini.getParameters("usernameB");
 		passwordB = ini.getParameters("passwordB");
 	}

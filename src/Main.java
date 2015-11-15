@@ -1,7 +1,7 @@
 package src;
 
+import src.check.TableCheck;
 import src.metadata.Metadata;
-import src.mysql.Table;
 import src.utils.Settings;
 
 public class Main {
@@ -15,15 +15,13 @@ public class Main {
 		Settings.setConf(conf);
 		DatabaseConnection databaseA = new DatabaseConnection(Settings.getUrl_baseA(), Settings.getUsernameA(),
 				Settings.getPasswordA());
-//		DatabaseConnection databaseB = new DatabaseConnection(Settings.getUrl_baseB(), Settings.getUsernameB(),
-//				Settings.getPasswordB());
+		DatabaseConnection databaseB = new DatabaseConnection(Settings.getUrl_baseB(), Settings.getUsernameB(),
+				Settings.getPasswordB());
 
-		Metadata a = new Metadata("basea",databaseA);
-		for(Table s: a.getTables()){
-//			System.out.println(s.getColums() + "\n");
-//			System.out.println(s.getName() + "\n");
-		}
-		
-		
+		Metadata mda = new Metadata(Settings.getSchemaA(),databaseA);
+		Metadata mdb = new Metadata(Settings.getSchemaB(),databaseB);
+				
+		TableCheck tableCheck = new TableCheck(mda.getSchema(), mdb.getSchema());
+		tableCheck.check();
 	}
 }

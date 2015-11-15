@@ -1,7 +1,7 @@
 package src.mysql;
 
 public enum SQLType {
-	CHAR, VARCHAR, LONGVARCHAR, NUMERIC, DECIMAL, BIT, TINYINT, SMALLINT, INTEGER, BIGINT, REAL, FLOAT, DOUBLE, BINARY, VARBINARY, LONGBINARY, DATE, TIME, TIMESTAMP;
+	CHAR, VARCHAR, LONGVARCHAR, NUMERIC, DECIMAL, BIT, TINYINT, SMALLINT, INT,INTEGER, BIGINT, REAL, FLOAT, DOUBLE, BINARY, VARBINARY, LONGBINARY, DATE, TIME, TIMESTAMP;
 
 	@Override
 	public String toString() {
@@ -22,8 +22,10 @@ public enum SQLType {
 			return "TINYINT";
 		case SMALLINT:
 			return "SMALLINT";
+		case INT:
+			return "INT";
 		case INTEGER:
-			return "INTEGER";
+			return "INT";
 		case BIGINT:
 			return "BIGINT";
 		case REAL:
@@ -68,7 +70,7 @@ public enum SQLType {
 		case 5:
 			return SQLType.SMALLINT;
 		case 4:
-			return SQLType.INTEGER;
+			return SQLType.INT;
 		case -5:
 			return SQLType.BIGINT;
 		case 7:
@@ -88,6 +90,53 @@ public enum SQLType {
 		case 92:
 			return SQLType.TIME;
 		case 93:
+			return SQLType.TIMESTAMP;
+		}
+
+		return null;
+	}
+	
+	public static SQLType getType(String type){
+		switch (type) {
+		case "CHAR":
+			return SQLType.CHAR;
+		case "VARCHAR":
+			return SQLType.VARCHAR;
+		case "LONGVARCHAR":
+			return SQLType.LONGVARCHAR;
+		case "NUMERIC":
+			return SQLType.NUMERIC;
+		case "DECIMAL":
+			return SQLType.DECIMAL;
+		case "BIT":
+			return SQLType.BIT;
+		case "TINYINT":
+			return SQLType.TINYINT;
+		case "SMALLINT":
+			return SQLType.SMALLINT;
+		case "INTEGER":
+			return SQLType.INT;
+		case "INT":
+			return SQLType.INT;
+		case "BIGINT":
+			return SQLType.BIGINT;
+		case "REAL":
+			return SQLType.REAL;
+		case "FLOAT":
+			return SQLType.FLOAT;
+		case "DOUBLE":
+			return SQLType.DOUBLE;
+		case "BINARY":
+			return SQLType.BINARY;
+		case "VARBINARY":
+			return SQLType.VARBINARY;
+		case "LONGBINARY":
+			return SQLType.LONGBINARY;
+		case "DATE":
+			return SQLType.DATE;
+		case "TIME":
+			return SQLType.TIME;
+		case "TIMESTAMP":
 			return SQLType.TIMESTAMP;
 		}
 
