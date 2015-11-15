@@ -30,5 +30,8 @@ public class FunctionParameter {
 	public void setType(Type type) {
 		this.type = type;
 	}
-
+	
+	public boolean equals(FunctionParameter functionParameter) {
+		return (this.toString().equals(functionParameter.toString()));
+	}
 }
