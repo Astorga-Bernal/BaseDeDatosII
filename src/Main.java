@@ -1,5 +1,6 @@
 package src;
 
+import src.check.ProcedureFuntionCheck;
 import src.check.TableCheck;
 import src.metadata.Metadata;
 import src.utils.Settings;
@@ -23,5 +24,8 @@ public class Main {
 				
 		TableCheck tableCheck = new TableCheck(mda.getSchema(), mdb.getSchema());
 		tableCheck.check();
+		
+		ProcedureFuntionCheck procedureFuntionCheck = new ProcedureFuntionCheck(mda.getSchema(), mdb.getSchema());
+		procedureFuntionCheck.check();
 	}
 }
