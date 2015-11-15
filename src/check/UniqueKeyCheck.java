@@ -27,16 +27,16 @@ public class UniqueKeyCheck {
 				System.out.println("La UniqueKey "+ u1.getName() + " de la tabla " + tableA.getName() + " no existe en la tabla "+ tableB.getName());
 		}
 
-		for (UniqueKey u1:tableA.getUniquekeys() ){
+		for (UniqueKey u1:tableB.getUniquekeys() ){
 			boolean exist = false;
-			for (UniqueKey u2:tableB.getUniquekeys() ){
+			for (UniqueKey u2:tableA.getUniquekeys() ){
 				if(u1.getName().equals(u2.getName())){
 					exist = true;
 					break;
 				}
 			}
 			if (!exist) 
-				System.out.println(u1.getName() + " no existe en "+ tableB.getName());
+				System.out.println(u1.getName() + " no existe en "+ tableA.getName());
 		}
 
 		for (UniqueKey u1:tableA.getUniquekeys() ){
@@ -46,8 +46,8 @@ public class UniqueKeyCheck {
 					break;
 				}
 			}
-
 		}
+		
 	}
 
 }

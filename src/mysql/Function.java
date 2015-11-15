@@ -53,4 +53,26 @@ public class Function {
 		this.code = code;
 	}
 
+	public boolean equals(Function function){
+		boolean eq = true;
+		eq &= name.equals(function.getName());
+		eq &= returntype.equals(function.getReturntype());
+		eq &= code.equals(function.getCode());
+
+		boolean eqParam = false;
+		for (FunctionParameter c1 : parameters) {
+			eqParam = false;
+			for (FunctionParameter c2 : function.getParameters()) {
+				if (c1.equals(c2)) {
+					eqParam = true;
+					break;
+				}
+			}
+			if(!eqParam)
+				break;
+		}
+
+		eq &= eqParam || (parameters.isEmpty() && function.getParameters().isEmpty());
+		return eq;
+	}
 }

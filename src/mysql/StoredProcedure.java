@@ -42,5 +42,27 @@ public class StoredProcedure {
 	public void setCode(String code) {
 		this.code = code;
 	}
+	
+	public boolean equals(StoredProcedure storedProcedure){
+		boolean eq = true;
+		eq &= name.equals(storedProcedure.getName());
+		eq &= code.equals(storedProcedure.getCode());
+
+		boolean eqParam = false;
+		for (ProcedureParameter p1 : parameters) {
+			eqParam = false;
+			for (ProcedureParameter p2 : storedProcedure.getParameters()) {
+				if (p1.equals(p2)) {
+					eqParam = true;
+					break;
+				}
+			}
+			if(!eqParam)
+				break;
+		}
+
+		eq &= eqParam || (parameters.isEmpty() && storedProcedure.getParameters().isEmpty());
+		return eq;
+	}
 
 }
