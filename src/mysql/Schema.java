@@ -7,14 +7,14 @@ public class Schema {
 	private String name;
 	private LinkedList<Table> tables;
 	private LinkedList<View> views;
-	private LinkedList<Funtion> functions;
+	private LinkedList<Function> functions;
 	private LinkedList<StoredProcedure> storeprocedures;
 
 	public Schema() {
 		super();
 	}
 
-	public Schema(String name, LinkedList<Table> tables, LinkedList<View> views, LinkedList<Funtion> functions,
+	public Schema(String name, LinkedList<Table> tables, LinkedList<View> views, LinkedList<Function> functions,
 			LinkedList<StoredProcedure> storeprocedures) {
 		super();
 		this.name = name;
@@ -48,11 +48,11 @@ public class Schema {
 		this.views = views;
 	}
 
-	public LinkedList<Funtion> getFunctions() {
+	public LinkedList<Function> getFunctions() {
 		return functions;
 	}
 
-	public void setFunctions(LinkedList<Funtion> functions) {
+	public void setFunctions(LinkedList<Function> functions) {
 		this.functions = functions;
 	}
 

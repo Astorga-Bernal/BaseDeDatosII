@@ -10,6 +10,7 @@ import src.mysql.ActionEvent;
 import src.mysql.Column;
 import src.mysql.Event;
 import src.mysql.ForeingKey;
+import src.mysql.Function;
 import src.mysql.Index;
 import src.mysql.PrimaryKey;
 import src.mysql.Restiction;
@@ -32,8 +33,27 @@ public class Metadata {
 	public Metadata(String schema, DatabaseConnection databaseconnection) {
 		super();
 		this.schema = new Schema();
-		this.schema.setName(schema);
 		this.databaseconnection = databaseconnection;
+		this.schema.setName(schema);
+		this.schema.setTables(getTables());
+		this.schema.setFunctions(getFunctions());
+		this.schema.setStoreprocedures(null);
+		this.schema.setViews(null);
+	}
+
+	private LinkedList<Function> getFunctions() {
+		LinkedList<Function> functions = new LinkedList<Function>();
+		try {
+			ResultSet rst = databaseconnection.newMataData().getProcedureColumns(null, schema.getName(), "%", "%");
+			while (rst.next()) {
+				Function funtion = new Function();
+//				funtion.
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return functions;
 	}
 
 	public Schema getSchema() {
@@ -64,8 +84,8 @@ public class Metadata {
 				tabla.setPrimarykey(getStprimaryKey(tabla)); // Primary Key
 				tabla.setIndexs(getIndexs(tabla)); // Indexs
 				tabla.setForeingkeys(getForeinKeys(tabla)); // Foreing Keys
-				tabla.setUniquekeys(getUniqueKeys(tabla)); // Unique Keys
 				tabla.setTrigges(getTriggers(tabla)); // Triggers
+				tabla.setUniquekeys(getUniqueKeys(tabla)); // Unique Keys
 				tables.add(tabla);
 			}
 		} catch (SQLException e) {
@@ -78,14 +98,16 @@ public class Metadata {
 		LinkedList<Trigger> triggers = new LinkedList<Trigger>();
 		try {
 			@SuppressWarnings("static-access")
-			ResultSet rsc = databaseconnection.NewStatement().executeQuery("select * from information_schema.TRIGGERS t WHERE t.TRIGGER_SCHEMA='"+schema.getName()+"' and t.EVENT_OBJECT_TABLE='"+tabla.getName()+"';");
+			ResultSet rsc = databaseconnection.NewStatement()
+					.executeQuery("select * from information_schema.TRIGGERS t WHERE t.TRIGGER_SCHEMA='"
+							+ schema.getName() + "' and t.EVENT_OBJECT_TABLE='" + tabla.getName() + "';");
 			while (rsc.next()) {
 				Trigger trigger = new Trigger();
 				trigger.setName(rsc.getString("TRIGGER_NAME"));
 				trigger.setCode(rsc.getString("ACTION_STATEMENT"));
 				trigger.setEvent(Event.getType(rsc.getString("EVENT_MANIPULATION")));
 				trigger.setTiming(Timing.getType(rsc.getString("ACTION_TIMING")));
-				
+
 				triggers.add(trigger);
 			}
 		} catch (SQLException e) {
@@ -94,9 +116,35 @@ public class Metadata {
 		return triggers;
 	}
 
+	@SuppressWarnings("static-access")
 	private LinkedList<UniqueKey> getUniqueKeys(Table tabla) {
 		LinkedList<UniqueKey> uniquekeys = new LinkedList<UniqueKey>();
-		// TODO todas las claves unicas de una tabla
+		try {
+			ResultSet rsc = databaseconnection.NewStatement().executeQuery(
+					"SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS it WHERE it.CONSTRAINT_TYPE = 'UNIQUE' and it.TABLE_SCHEMA = '"
+							+ schema.getName() + "' and it.TABLE_NAME='" + tabla.getName() + "'");
+			while (rsc.next()) {
+				UniqueKey uniquekey = new UniqueKey();
+				uniquekey.setName(rsc.getString("CONSTRAINT_NAME"));
+				ResultSet rsaux = databaseconnection.NewStatement()
+						.executeQuery("SELECT * FROM information_schema.key_column_usage k WHERE k.table_schema = '"
+								+ schema.getName() + "' and k.table_name = '" + tabla.getName()
+								+ "' and k.CONSTRAINT_NAME='" + uniquekey.getName() + "'");
+				LinkedList<Column> columnas = new LinkedList<Column>();
+				while (rsaux.next()) {
+					for (Column c : tabla.getColums()) {
+						if (c.getName().equals(rsaux.getString("COLUMN_NAME"))) {
+							columnas.add(c);
+							break;
+						}
+					}
+				}
+				uniquekey.setColums(columnas);
+				uniquekeys.add(uniquekey);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		return uniquekeys;
 	}
 
