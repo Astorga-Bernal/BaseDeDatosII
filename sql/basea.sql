@@ -6,6 +6,7 @@ USE basea;
 DROP TABLE IF EXISTS cliente;
 CREATE TABLE cliente (
   nro_cliente int(10) unsigned NOT NULL auto_increment, -- Considero que el nro sea positivo y autoincrementado
+  dni varchar(45) NOT NULL UNIQUE,
   nombre varchar(45) NOT NULL default '', -- Considero que el nombre sea Varchar y por defecto vacio
   apellido varchar(45) NOT NULL default '', -- Considero que el apellido sea Varchar y por defecto vacio
   dereccion varchar(45) NOT NULL default '', -- Considero que la direccion sea Varchar y por defecto vacio
@@ -14,12 +15,12 @@ CREATE TABLE cliente (
   CONSTRAINT pk_nro_cliente PRIMARY KEY (nro_cliente,nombre)
 );
 -- Insercion de datos a tabla "Cliente"
-INSERT INTO cliente (nro_cliente,nombre,apellido,dereccion,telefono) 
+INSERT INTO cliente (nro_cliente,dni,nombre,apellido,dereccion,telefono) 
 	VALUES 
-			(1,'Maria Marta','Juarez','La Falda',35898763),
-		    (2,'Ruben Cufre','Juarez','La Falda',35898763),
-		    (3,'Abel Pintos','Juarez','La Falda',35898763),
-			(4,'Luciano Rodriguez','Perez','La Falda',35898763);
+			(1,'1','Maria Marta','Juarez','La Falda',35898763),
+		    (2,'2','Ruben Cufre','Juarez','La Falda',35898763),
+		    (3,'3','Abel Pintos','Juarez','La Falda',35898763),
+			(4,'4','Luciano Rodriguez','Perez','La Falda',35898763);
 
 
 -- Table "Factura"
@@ -29,7 +30,7 @@ CREATE TABLE factura (
     nro_cliente INT(10) UNSIGNED,
     fecha DATE,
     monto DECIMAL(5,2),
-    cantidadMaxItems INTEGER, -- cantidad máxima de ítems permitidos.
+    cantidadMaxItems INTEGER, -- cantidad maÌ�xima de iÌ�tems permitidos.
     CONSTRAINT pk_nro_factura PRIMARY KEY (nro_factura),
     CONSTRAINT fk_nro_cliente FOREIGN KEY (nro_cliente) REFERENCES cliente (nro_cliente) on delete cascade
 );
@@ -76,7 +77,7 @@ CREATE TABLE itemFactura(
 -- solo lo llama me parece
 -- En mysql no es necesario el procedimiento, puedo hacerlo directamente en el trigger
 -- (Trigger para ver si insertar o no en la tabla)
--- Controlar que la base de datos no acepte que una factura tenga más ítems que la cantidad de ítems permitidos por esta.
+-- Controlar que la base de datos no acepte que una factura tenga maÌ�s iÌ�tems que la cantidad de iÌ�tems permitidos por esta.
 
 DELIMITER //
  CREATE TRIGGER Chequeo
@@ -93,11 +94,3 @@ DELIMITER //
 		
 	END//
 DELIMITER ;
-
-
-
-
-
-
-
-
