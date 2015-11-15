@@ -51,5 +51,13 @@ public class Trigger {
 	public void setCode(String code) {
 		this.code = code;
 	}
-
+	
+	public boolean equals(Trigger trigger){
+		boolean eq = true;
+		eq &= name.equals(trigger.getName());
+		eq &= timing.equals(trigger.getTiming());
+		eq &= event.equals(trigger.getEvent());
+		eq &= code.equals(trigger.getCode());
+		return eq;
+	}
 }

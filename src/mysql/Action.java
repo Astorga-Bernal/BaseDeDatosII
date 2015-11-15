@@ -51,4 +51,8 @@ public enum Action {
 		}
 		return null;
 	}
+
+	public boolean equals(Action action){
+		return (this.toString().equals(action.toString()));
+	}
 }

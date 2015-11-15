@@ -57,5 +57,4 @@ public class Column {
 		eq &= type.equals(column.getType());
 		return eq;
 	}
-
 }

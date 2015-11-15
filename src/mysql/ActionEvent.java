@@ -23,4 +23,8 @@ public enum ActionEvent {
 		}
 		return null;
 	}
+	
+	public boolean equals(Event event){
+		return (this.toString().equals(event.toString()));
+	}
 }

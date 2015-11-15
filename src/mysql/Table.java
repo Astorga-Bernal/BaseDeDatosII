@@ -95,6 +95,4 @@ public class Table {
 		eq &= trigges.equals(tabla.getTrigges());
 		return eq;
 	}
-	
-
 }

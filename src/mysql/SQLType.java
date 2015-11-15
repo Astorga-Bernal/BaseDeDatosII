@@ -48,7 +48,7 @@ public enum SQLType {
 
 		return null;
 	}
-	
+
 	public static SQLType getType(int type){
 		switch (type) {
 		case 1:
@@ -93,7 +93,8 @@ public enum SQLType {
 
 		return null;
 	}
-	
-	
-	
+
+	public boolean equals(SQLType sqlType){
+		return (this.toString().equals(sqlType.toString()));
+	}
 }

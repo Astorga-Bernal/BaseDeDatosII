@@ -33,4 +33,10 @@ public class PrimaryKey {
 		this.columns = colums;
 	}
 
+	public boolean equals(PrimaryKey primaryKey){
+		boolean eq = true;
+		eq &= name.equals(primaryKey.getName());
+		eq &= columns.equals(primaryKey.getColums());
+		return eq;
+	}
 }

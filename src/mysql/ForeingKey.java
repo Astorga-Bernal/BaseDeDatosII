@@ -52,5 +52,13 @@ public class ForeingKey {
 	public void setRestriction(LinkedList<Restiction> restriction) {
 		this.restriction = restriction;
 	}
-
+	
+	public boolean equals(ForeingKey foreingKey){
+		boolean eq = true;
+		eq &= name.equals(foreingKey.getName());
+		eq &= table.equals(foreingKey.getTable());
+		eq &= colums.equals(foreingKey.getColums());
+		eq &= restriction.equals(foreingKey.getRestriction());
+		return eq;
+	}
 }

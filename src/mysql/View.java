@@ -30,5 +30,11 @@ public class View {
 	public void setQuery(String query) {
 		this.query = query;
 	}
-
+	
+	public boolean equals(View view){
+		boolean eq = true;
+		eq &= name.equals(view.getName());
+		eq &= query.equals(view.getQuery());
+		return eq;
+	}
 }

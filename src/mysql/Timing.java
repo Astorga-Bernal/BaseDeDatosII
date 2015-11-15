@@ -24,4 +24,7 @@ public enum Timing {
 		return null;
 	}
 
+	public boolean equals(Timing timing){
+		return (this.toString().equals(timing.toString()));
+	}
 }

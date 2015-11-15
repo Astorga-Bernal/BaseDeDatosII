@@ -31,5 +31,11 @@ public class Index {
 	public void setColums(LinkedList<Column> colums) {
 		this.colums = colums;
 	}
-
+	
+	public boolean equals(Index index){
+		boolean eq = true;
+		eq &= name.equals(index.getName());
+		eq &= colums.equals(index.getColums());
+		return eq;
+	}
 }

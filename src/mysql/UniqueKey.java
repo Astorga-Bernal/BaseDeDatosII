@@ -32,6 +32,11 @@ public class UniqueKey {
 	public void setColums(LinkedList<Column> colums) {
 		this.colums = colums;
 	}
-
-
+	
+	public boolean equals(UniqueKey uniqueKey){
+		boolean eq = true;
+		eq &= name.equals(uniqueKey.getName());
+		eq &= colums.equals(uniqueKey.getColums());
+		return eq;
+	}
 }
