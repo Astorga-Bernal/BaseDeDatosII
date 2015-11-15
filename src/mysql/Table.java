@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 public class Table {
 
-	private String name;
+	private String name; 
 	private PrimaryKey primarykey;
 	private LinkedList<Column> colums;
 	private LinkedList<Index> indexs;

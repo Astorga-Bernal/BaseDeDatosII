@@ -15,6 +15,8 @@ public class TableCheck {
 	}
 
 	public void check() {
+		System.out.println("----------------- NIVEL TABLAS -----------------");System.out.println("\n");
+		
 		// Chequeo de tablas del esquema A y no en B
 		System.out
 				.println(">> CHEQUEANDO TABLAS DEL SCHEMA " + schemaA.getName() + " EN EL SCHEMA " + schemaB.getName());
@@ -69,7 +71,7 @@ public class TableCheck {
 					System.out.println(">>>> LA TABLA " + t1.getName() + " ESTA EN AMBOS SCHEMAS");
 					System.out.println(">>>>>> CHEQUEANDO COLUMNAS");
 					ColumnCheck columnCheck = new ColumnCheck(t1, t2);
-					columnCheck.check();
+					columnCheck.check();					
 					break;
 				}
 			}
