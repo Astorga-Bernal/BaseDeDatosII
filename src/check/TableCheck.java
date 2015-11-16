@@ -74,6 +74,7 @@ public class TableCheck {
 					System.out.println("		CHEQUEO DE TRIGGER");
 					TriggerCheck triggerCheck = new TriggerCheck(t1,t2);
 					triggerCheck.check();
+					System.out.println("\n");
 					break;
 				}
 			}

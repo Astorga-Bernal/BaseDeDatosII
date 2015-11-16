@@ -72,4 +72,16 @@ public class Trigger {
 		eq &= name.equals(trigger.getName());
 		return eq;
 	}
+	
+	public boolean equalEvent(Trigger trigger){
+		boolean eq = true;
+		eq &= event.equals(trigger.getEvent());
+		return eq;
+	}
+	
+	public boolean equaltiming(Trigger trigger){
+		boolean eq = true;
+		eq &= timing.equals(trigger.getTiming());
+		return eq;
+	}
 }

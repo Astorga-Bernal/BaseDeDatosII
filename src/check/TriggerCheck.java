@@ -46,17 +46,30 @@ public class TriggerCheck {
 					
 					// Chequeo el codigo 
 					if (t1.equalCode(t2)){
-						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " posee el mismo codigo que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " posee el mismo codigo que "+t2.getName() + " de la tabla "+ tableB.getName());
 					}else {
-						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " no! posee el mismo codigo que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " no! posee el mismo codigo que "+t2.getName() + " de la tabla "+ tableB.getName());
 					}
-					System.out.println("\n");
 					
 					// Chequeo el name 
 					if (t1.equalName(t2)){
-						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " posee el mismo nombre que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " posee el mismo nombre que "+t2.getName() + " de la tabla "+ tableB.getName());
 					}else {
-						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " no! posee el mismo nombre que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " no! posee el mismo nombre que "+t2.getName() + " de la tabla "+ tableB.getName());
+					}
+					
+					// Chequeo el event 
+					if (t1.equalEvent(t2)){
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " posee el mismo event que "+t2.getName() + " de la tabla "+ tableB.getName());
+					}else {
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " no! posee el mismo event que "+t2.getName() + " de la tabla "+ tableB.getName());
+					}
+					
+					// Chequeo el timing 
+					if (t1.equaltiming(t2)){
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " posee el mismo timing que "+t2.getName() + " de la tabla "+ tableB.getName());
+					}else {
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla "+ tableA.getName() + " no! posee el mismo timing que "+t2.getName() + " de la tabla "+ tableB.getName());
 					}
 					System.out.println("\n");
 					break;
