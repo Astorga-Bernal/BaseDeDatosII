@@ -18,11 +18,9 @@ public class TableCheck {
 		System.out.println("----------------- NIVEL TABLAS -----------------");System.out.println("\n");
 		
 		// Chequeo de tablas del esquema A y no en B
-		System.out
-				.println(">> CHEQUEANDO TABLAS DEL SCHEMA " + schemaA.getName() + " EN EL SCHEMA " + schemaB.getName());
+		System.out.println(">> CHEQUEANDO TABLAS DEL SCHEMA " + schemaA.getName() + " EN EL SCHEMA " + schemaB.getName());
 		for (Table t1 : schemaA.getTables()) {
-			System.out
-			.println(">>>> CHEQUEANDO TABLA: " + t1.getName());
+			System.out.println("	chequeando tabla: " + t1.getName());
 			boolean exist = false;
 			for (Table t2 : schemaB.getTables()) {
 				if (t1.equals(t2)) {
@@ -30,9 +28,8 @@ public class TableCheck {
 					break;
 				} else {
 					if (t1.getName().equals(t2.getName())) {
-						System.out.println(
-								">>>>>> LA TABLA " + t2.getName() + " ES DIFERENTE EN LOS SCHEMAS");
-						System.out.println(">>>>>>>> CHEQUEANDO COLUMNAS");
+						System.out.println("	La tabla " + t2.getName() + " es diferente en los dos schemas ");
+						System.out.println("		CHEQUEANDO COLUMNAS");
 						ColumnCheck columnCheck = new ColumnCheck(t1, t2);
 						columnCheck.check();
 						exist = true;
@@ -41,15 +38,12 @@ public class TableCheck {
 				}
 			}
 			if (!exist)
-				System.out.println(">>>>>> LA TABLA " + t1.getName() + " EN " + schemaA.getName()
-						+ " NO EXISTE EN " + schemaB.getName());
+				System.out.println(">>>>>> La tabla " + t1.getName() + " en " + schemaA.getName() + " no! existe en " + schemaB.getName());
 		}
-		System.out.println(">> CHEQUEANDO TABLAS DEL SCHEMA " + schemaB.getName() + " EN EL SCHEMA "
-				+ schemaA.getName());
+		System.out.println(">> CHEQUEANDO TABLAS DEL SCHEMA " + schemaB.getName() + " EN EL SCHEMA " + schemaA.getName());
 		// Chequeo de tablas del esquema B
 		for (Table t1 : schemaB.getTables()) {
-			System.out
-			.println(">>>> CHEQUEANDO TABLA: " + t1.getName());
+			System.out.println("	chequeando tabla: " + t1.getName());
 			boolean exist = false;
 			for (Table t2 : schemaA.getTables()) {
 				if (t1.getName().equals(t2.getName())) {
@@ -68,14 +62,13 @@ public class TableCheck {
 		for (Table t1 : schemaA.getTables()) {
 			for (Table t2 : schemaB.getTables()) {
 				if (t1.getName().equals(t2.getName())) {
-					System.out.println(">>>> LA TABLA " + t1.getName() + " ESTA EN AMBOS SCHEMAS");
-					System.out.println(">>>>>> CHEQUEANDO COLUMNAS");
+					System.out.println("	La tabla " + t1.getName() + " esta en ambos schemas");
+					System.out.println("		CHEQUEANDO COLUMNAS");
 					ColumnCheck columnCheck = new ColumnCheck(t1, t2);
 					columnCheck.check();					
 					break;
 				}
 			}
-
 		}
 	}
 

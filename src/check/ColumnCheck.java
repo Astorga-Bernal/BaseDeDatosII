@@ -23,10 +23,9 @@ public class ColumnCheck {
 					exist = true;
 					break;
 				}else if (c1.getName().equals(c2.getName())) {
-					System.out.println(
-							">>>>>>>>>> LAS TABLAS TIENEN LA MISMA COLUMNA: " + c1.getName() + " NO DEL MISMO TIPO");
-					System.out.println(">>>>>>>>>> COLUMNA: "+c1.getName()+" - TIPO: "+ c1.getType().toString());
-					System.out.println(">>>>>>>>>> COLUMNA: "+c2.getName()+" - TIPO: "+ c2.getType().toString());					
+					System.out.println(">>>>>>>>>> LAS TABLAS TIENEN LA MISMA COLUMNA: " + c1.getName() + " NO DEL MISMO TIPO");
+					System.out.println("		 COLUMNA: "+c1.getName()+" - TIPO: "+ c1.getType().toString());
+					System.out.println("	     COLUMNA: "+c2.getName()+" - TIPO: "+ c2.getType().toString());					
 					exist = true;
 					break;
 				}
@@ -55,7 +54,7 @@ public class ColumnCheck {
 		for (Column c1:tableA.getColums() ){
 			for (Column c2:tableB.getColums() ){
 				if(c1.getName().equals(c2.getName())){
-					System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() +" - TIPO: "+ c1.getType().toString() + " EXISTE EN AMBAS TABAS");
+					System.out.println("		 LA COLUMNA "+ c1.getName() +" - TIPO: "+ c1.getType().toString() + " EXISTE EN AMBAS TABAS");
 					break;
 				}
 			}
