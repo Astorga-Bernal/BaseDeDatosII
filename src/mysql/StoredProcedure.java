@@ -69,6 +69,12 @@ public class StoredProcedure {
 		return eq;
 	}
 	
+	public boolean equalsCode(StoredProcedure storedProcedure){
+		boolean eq = true;
+		eq &= code.equals(storedProcedure.getCode());
+		return eq;
+	}
+	
 	public boolean equalsParam(StoredProcedure storedProcedure){
 		boolean eq = true;
 		boolean eqParam = false;
