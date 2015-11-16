@@ -42,7 +42,7 @@ public class StoredProcedure {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
+
 	public boolean equals(StoredProcedure storedProcedure){
 		boolean eq = true;
 		eq &= name.equals(storedProcedure.getName());
@@ -60,9 +60,7 @@ public class StoredProcedure {
 			if(!eqParam)
 				break;
 		}
-
-		eq &= eqParam || (parameters.isEmpty() && storedProcedure.getParameters().isEmpty());
-		return eq;
+		return eq &= eqParam || (parameters.isEmpty() && storedProcedure.getParameters().isEmpty());
 	}
 
 }
