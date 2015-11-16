@@ -70,7 +70,12 @@ public class TableCheck {
 					System.out.println("		CHEQUEO DE COLUMNAS");
 					ColumnCheck columnCheck = new ColumnCheck(t1, t2);
 					columnCheck.check();	
+					
+					System.out.println("		CHEQUEO DE TRIGGER");
+					TriggerCheck triggerCheck = new TriggerCheck(t1,t2);
+					triggerCheck.check();
 					System.out.println("\n");
+					
 					break;
 				}
 			}
