@@ -32,6 +32,9 @@ public class FunctionParameter {
 	}
 	
 	public boolean equals(FunctionParameter functionParameter) {
-		return (this.toString().equals(functionParameter.toString()));
+		boolean eq = true;
+		eq &= name.equals(functionParameter.getName());
+		eq &= type.equals(functionParameter.getType());
+		return eq;
 	}
 }

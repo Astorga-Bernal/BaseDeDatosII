@@ -39,5 +39,13 @@ public class ProcedureParameter {
 	public void setParameterType(ParameterType parameterType) {
 		this.parameterType = parameterType;
 	}
+	
+	public boolean equals(ProcedureParameter procedureParameter){
+		boolean eq = true;
+		eq &= name.equals(procedureParameter.getName());
+		eq &= type.equals(procedureParameter.getType());
+		eq &= parameterType.equals(procedureParameter.getParameterType());
+		return eq;
+	}
 
 }

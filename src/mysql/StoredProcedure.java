@@ -68,5 +68,22 @@ public class StoredProcedure {
 		eq &= name.equals(storedProcedure.getName());
 		return eq;
 	}
+	
+	public boolean equalsParam(StoredProcedure storedProcedure){
+		boolean eq = true;
+		boolean eqParam = false;
+		for (ProcedureParameter p1 : parameters) {
+			eqParam = false;
+			for (ProcedureParameter p2 : storedProcedure.getParameters()) {
+				if (p1.equals(p2)) {
+					eqParam = true;
+					break;
+				}
+			}
+			if(!eqParam)
+				break;
+		}
+		return eq &= eqParam || (parameters.isEmpty() && storedProcedure.getParameters().isEmpty());
+	}
 
 }

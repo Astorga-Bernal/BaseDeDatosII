@@ -81,4 +81,36 @@ public class Function {
 		eq &= name.equals(function.getName());
 		return eq;
 	}
+	
+	public boolean equalsParam(Function function){
+		boolean eq = true;
+		boolean eqParam = false;
+		for (FunctionParameter c1 : parameters) {
+			eqParam = false;
+			for (FunctionParameter c2 : function.getParameters()) {
+				if (c1.equals(c2)) {
+					eqParam = true;
+					break;
+				}
+			}
+			if(!eqParam)
+				break;
+		}
+
+		eq &= eqParam || (parameters.isEmpty() && function.getParameters().isEmpty());
+		return eq;
+	}
+	
+	public boolean equalsCode(Function function){
+		boolean eq = true;
+		eq &= code.equals(function.getCode());
+		return eq;
+	}
+	
+	public boolean equalsReturntype(Function function){
+		boolean eq = true;
+		eq &= returntype.equals(function.getReturntype());
+		return eq;
+	}
+	
 }
