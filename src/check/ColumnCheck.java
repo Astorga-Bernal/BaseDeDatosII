@@ -54,7 +54,7 @@ public class ColumnCheck {
 		for (Column c1:tableA.getColums() ){
 			for (Column c2:tableB.getColums() ){
 				if(c1.getName().equals(c2.getName())){
-					System.out.println("		 LA COLUMNA "+ c1.getName() +" - TIPO: "+ c1.getType().toString() + " EXISTE EN AMBAS TABAS");
+					System.out.println("			"+ c1.getName() +" - TIPO: "+ c1.getType().toString() + " 	existe en ambas");
 					break;
 				}
 			}
