@@ -75,4 +75,10 @@ public class Function {
 		eq &= eqParam || (parameters.isEmpty() && function.getParameters().isEmpty());
 		return eq;
 	}
+	
+	public boolean equalsNameFunction(Function function){
+		boolean eq = true;
+		eq &= name.equals(function.getName());
+		return eq;
+	}
 }

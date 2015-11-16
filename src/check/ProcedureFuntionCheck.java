@@ -53,7 +53,7 @@ public class ProcedureFuntionCheck {
 		System.out.println(">> CHEQUEANDO PROCEDIMIENTO COMUNES EN AMBOS SCHEMAS");
 		for (StoredProcedure p1:schemaA.getStoreprocedures() ){
 			for (StoredProcedure p2:schemaB.getStoreprocedures() ){
-				if(p1.getName().equals(p2.getName())){
+				if(p1.equalsNameProcedure(p2)){
 					System.out.println("	El procedimiento: " + p1.getName() + " esta en ambos schemas");
 					System.out.println("		CHEQUEANDO DIFERENCIA EN LOS PERFILES");
 					
@@ -97,7 +97,7 @@ public class ProcedureFuntionCheck {
 		System.out.println(">> CHEQUEANDO FUNCIONES COMUNES EN AMBOS SCHEMAS");
 		for (Function f1:schemaA.getFunctions() ){
 			for (Function f2:schemaB.getFunctions() ){
-				if(f1.getName().equals(f2.getName())){
+				if(f1.equalsNameFunction(f2)){
 					System.out.println("	La funcion: " + f1.getName() + " esta en ambos schemas");
 					System.out.println("		CHEQUEANDO DIFERENCIA EN LOS PERFILES");
 					break;

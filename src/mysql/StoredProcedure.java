@@ -62,5 +62,11 @@ public class StoredProcedure {
 		}
 		return eq &= eqParam || (parameters.isEmpty() && storedProcedure.getParameters().isEmpty());
 	}
+	
+	public boolean equalsNameProcedure(StoredProcedure storedProcedure){
+		boolean eq = true;
+		eq &= name.equals(storedProcedure.getName());
+		return eq;
+	}
 
 }
