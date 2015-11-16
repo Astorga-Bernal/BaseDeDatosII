@@ -43,6 +43,22 @@ public class TriggerCheck {
 			for (Trigger t2:tableB.getTrigges() ){
 				if(t1.getName().equals(t2.getName())){
 					System.out.println("			El trigger: "+ t1.getName() +" esta en ambas tablas");
+					
+					// Chequeo el codigo 
+					if (t1.equalCode(t2)){
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " posee el mismo codigo que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+					}else {
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " no! posee el mismo codigo que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+					}
+					System.out.println("\n");
+					
+					// Chequeo el name 
+					if (t1.equalName(t2)){
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " posee el mismo nombre que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+					}else {
+						System.out.println("			El trigger: "+t1.getName()+ " de la tabla: "+ tableA.getName() + " no! posee el mismo nombre que: "+t2.getName() + " de la tabla: "+ tableB.getName());
+					}
+					System.out.println("\n");
 					break;
 				}
 			}

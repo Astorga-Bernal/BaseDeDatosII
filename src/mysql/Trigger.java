@@ -60,4 +60,16 @@ public class Trigger {
 		eq &= code.equals(trigger.getCode());
 		return eq;
 	}
+	
+	public boolean equalCode(Trigger trigger){
+		boolean eq = true;
+		eq &= code.equals(trigger.getCode());
+		return eq;
+	}
+	
+	public boolean equalName(Trigger trigger){
+		boolean eq = true;
+		eq &= name.equals(trigger.getName());
+		return eq;
+	}
 }
