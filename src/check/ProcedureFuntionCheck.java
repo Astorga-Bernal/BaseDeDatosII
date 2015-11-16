@@ -66,9 +66,9 @@ public class ProcedureFuntionCheck {
 
 					// Chequeo de los parametros 
 					if (p1.equalsParam(p2)){
-						System.out.println("		El procedimiento: "+p1.getName()+ " del schema: "+ schemaA.getName() + " posee los mismo parametros que: "+p2.getName() + " del schema: "+ schemaB.getName());
+						System.out.println("		El procedimiento: "+p1.getName()+ " del schema: "+ schemaA.getName() + " posee los mismos parametros que: "+p2.getName() + " del schema: "+ schemaB.getName());
 					}else {
-						System.out.println("		El procedimiento: "+p1.getName()+ " del schema: "+ schemaA.getName() + " no! posee los mismo parametros que: "+p2.getName() + " del schema: "+ schemaB.getName());
+						System.out.println("		El procedimiento: "+p1.getName()+ " del schema: "+ schemaA.getName() + " no! posee los mismos parametros que: "+p2.getName() + " del schema: "+ schemaB.getName());
 					}
 					
 					// Chequeo el codigo 
@@ -130,9 +130,9 @@ public class ProcedureFuntionCheck {
 
 					// Chequeo de los parametros (parameters)
 					if (f1.equalsParam(f2)){
-						System.out.println("		La funcion: "+f1.getName()+ " del schema: "+ schemaA.getName() + " posee los mismo parametros que: "+f2.getName() + " del schema: "+ schemaB.getName());
+						System.out.println("		La funcion: "+f1.getName()+ " del schema: "+ schemaA.getName() + " posee los mismos parametros que: "+f2.getName() + " del schema: "+ schemaB.getName());
 					}else {
-						System.out.println("		La funcion: "+f1.getName()+ " del schema: "+ schemaA.getName() + " no! posee los mismo parametros que: "+f2.getName() + " del schema: "+ schemaB.getName());
+						System.out.println("		La funcion: "+f1.getName()+ " del schema: "+ schemaA.getName() + " no! posee los mismos parametros que: "+f2.getName() + " del schema: "+ schemaB.getName());
 					}
 					
 					// Chequeo de codigo 
