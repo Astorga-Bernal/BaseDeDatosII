@@ -29,7 +29,7 @@ public class TableCheck {
 				} else {
 					if (t1.getName().equals(t2.getName())) {
 						System.out.println("	La tabla " + t2.getName() + " es diferente en los dos schemas ");
-						System.out.println("		CHEQUEANDO COLUMNAS");
+						System.out.println("		CHEQUEO DE COLUMNAS");
 						ColumnCheck columnCheck = new ColumnCheck(t1, t2);
 						columnCheck.check();
 						exist = true;
@@ -69,7 +69,8 @@ public class TableCheck {
 					System.out.println("	La tabla: " + t1.getName() + " esta en ambos schemas");
 					System.out.println("		CHEQUEO DE COLUMNAS");
 					ColumnCheck columnCheck = new ColumnCheck(t1, t2);
-					columnCheck.check();					
+					columnCheck.check();	
+					System.out.println("\n");
 					break;
 				}
 			}
