@@ -24,7 +24,7 @@ public class IndexCheck {
 				}
 			}
 			if (!exist) 
-				System.out.println("El Index "+ u1.getName() + " de la tabla " + tableA.getName() + " no existe en la tabla "+ tableB.getName());
+				System.out.println("	El Index "+ u1.getName() + " de la tabla " + tableA.getName() + " no existe en la tabla "+ tableB.getName());
 		}
 
 		for (Index u1:tableB.getIndexs() ){
