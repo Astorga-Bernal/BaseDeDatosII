@@ -110,4 +110,28 @@ public class ForeingKey {
 		return eq;
 	}
 	
+	public boolean equalTable(ForeingKey foreingKey){
+		boolean eq = true;
+		eq &= table.equals(foreingKey.getTable());
+		return eq;
+	}
+	
+	public boolean equalRestriction(ForeingKey foreingKey){
+		boolean eq = true;
+		boolean eqRestrictions = false;
+		for (Restiction r1 : restriction) {
+			eqRestrictions = false;
+			for (Restiction r2 : foreingKey.getRestriction()) {
+				if (r1.equals(r2)) {
+					eqRestrictions = true;
+					break;
+				}
+			}
+			if(!eqRestrictions)
+				break;
+		}
+		eq &= eqRestrictions || (restriction.isEmpty() && foreingKey.getRestriction().isEmpty());
+		return eq;
+	}
+	
 }
