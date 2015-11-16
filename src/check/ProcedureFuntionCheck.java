@@ -123,7 +123,7 @@ public class ProcedureFuntionCheck {
 					
 					// Chequeo el nombre 
 					if (f1.equalsNameFunction(f2)){
-						System.out.println("		La  funcion: "+f1.getName()+ " del schema: "+ schemaA.getName() + " posee el mismo nombre que: "+f2.getName() + " del schema: "+ schemaB.getName());
+						System.out.println("		La funcion: "+f1.getName()+ " del schema: "+ schemaA.getName() + " posee el mismo nombre que: "+f2.getName() + " del schema: "+ schemaB.getName());
 					}else {
 						System.out.println("		La funcion: "+f1.getName()+ " del schema: "+ schemaA.getName() + " no! posee el mismo nombre que: "+f2.getName() + " del schema: "+ schemaB.getName());
 					}
