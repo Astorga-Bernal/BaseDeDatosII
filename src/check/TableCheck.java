@@ -79,6 +79,14 @@ public class TableCheck {
 					UniqueKeyCheck uniqueKeyCheck = new UniqueKeyCheck(t1,t2);
 					uniqueKeyCheck.check();
 					
+//					System.out.println("		CHEQUEO DE PRIMARYKEY");
+//					PrimaryKeyCheck primaryKeyCheck = new PrimaryKeyCheck(t1,t2);
+//					primaryKeyCheck.check();
+					
+					System.out.println("		CHEQUEO DE FOREINGKEY");
+					ForeingKeyCheck foreingKeyCheck = new ForeingKeyCheck(t1,t2);
+					foreingKeyCheck.check();
+					
 					System.out.println("\n");
 					break;
 				}

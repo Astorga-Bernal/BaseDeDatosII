@@ -50,4 +50,28 @@ public class PrimaryKey {
 		}
 		return eq &= eqColum || (columns.isEmpty() && primaryKey.getColums().isEmpty());
 	}
+	
+	public boolean equalName(PrimaryKey primaryKey){
+		boolean eq = true;
+		eq &= name.equals(primaryKey.getName());
+		return eq;
+	}
+	
+	public boolean equalColumns(PrimaryKey primaryKey){
+		boolean eq = true;
+		boolean eqColum = false;
+		for (Column c1 : columns) {
+			eqColum = false;
+			for (Column c2 : primaryKey.getColums()) {
+				if (c1.equals(c2)) {
+					eqColum = true;
+					break;
+				}
+			}
+			if(!eqColum)
+				break;
+		}
+		return eq &= eqColum || (columns.isEmpty() && primaryKey.getColums().isEmpty());
+	}
+	
 }

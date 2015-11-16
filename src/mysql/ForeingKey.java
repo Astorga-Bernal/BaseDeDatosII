@@ -85,4 +85,29 @@ public class ForeingKey {
 		eq &= eqRestrictions || (restriction.isEmpty() && foreingKey.getRestriction().isEmpty());
 		return eq;
 	}
+	
+	public boolean equalName(ForeingKey foreingKey){
+		boolean eq = true;
+		eq &= name.equals(foreingKey.getName());
+		return eq;
+	}
+	
+	public boolean equalColums(ForeingKey foreingKey){
+		boolean eq = true;
+		boolean eqColum = false;
+		for (Column c1 : colums) {
+			eqColum = false;
+			for (Column c2 : foreingKey.getColums()) {
+				if (c1.equals(c2)) {
+					eqColum = true;
+					break;
+				}
+			}
+			if(!eqColum)
+				break;
+		}
+		eq &= eqColum || (colums.isEmpty() && foreingKey.getColums().isEmpty());
+		return eq;
+	}
+	
 }
