@@ -74,6 +74,11 @@ public class TableCheck {
 					System.out.println("		CHEQUEO DE TRIGGER");
 					TriggerCheck triggerCheck = new TriggerCheck(t1,t2);
 					triggerCheck.check();
+					
+					System.out.println("		CHEQUEO DE UNIQUEKEY");
+					UniqueKeyCheck uniqueKeyCheck = new UniqueKeyCheck(t1,t2);
+					uniqueKeyCheck.check();
+					
 					System.out.println("\n");
 					break;
 				}

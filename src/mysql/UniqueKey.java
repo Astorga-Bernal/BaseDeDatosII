@@ -50,4 +50,27 @@ public class UniqueKey {
 		}
 		return eq &= eqColum || (colums.isEmpty() && uniqueKey.getColums().isEmpty());
 	}
+	
+	public boolean equalName(UniqueKey uniqueKey){
+		boolean eq = true;
+		eq &= name.equals(uniqueKey.getName());
+		return eq;
+	}
+	
+	public boolean equalColumns(UniqueKey uniqueKey){
+		boolean eq = true;
+		boolean eqColum = false;
+		for (Column c1 : colums) {
+			eqColum = false;
+			for (Column c2 : uniqueKey.getColums()) {
+				if (c1.equals(c2)) {
+					eqColum = true;
+					break;
+				}
+			}
+			if(!eqColum)
+				break;
+		}
+		return eq &= eqColum || (colums.isEmpty() && uniqueKey.getColums().isEmpty());
+	}
 }
