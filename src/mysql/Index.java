@@ -38,4 +38,16 @@ public class Index {
 		eq &= colums.equals(index.getColums());
 		return eq;
 	}
+	
+	public boolean equalName(Index index){
+		boolean eq = true;
+		eq &= name.equals(index.getName());
+		return eq;
+	}
+	
+	public boolean equalColums(Index index){
+		boolean eq = true;
+		eq &= colums.equals(index.getColums());
+		return eq;
+	}
 }

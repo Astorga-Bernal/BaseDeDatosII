@@ -87,6 +87,10 @@ public class TableCheck {
 					ForeingKeyCheck foreingKeyCheck = new ForeingKeyCheck(t1,t2);
 					foreingKeyCheck.check();
 					
+					System.out.println("		CHEQUEO DE INDEX");
+					IndexCheck indexCheck = new IndexCheck(t1,t2);
+					indexCheck.check();
+					
 					System.out.println("\n");
 					break;
 				}
