@@ -78,6 +78,8 @@ public class ProcedureFuntionCheck {
 			for (StoredProcedure p2:schemaB.getStoreprocedures() ){
 				if(p1.equals(p2)){
 					System.out.println("	El procedimiento: " + p1.getName() + " esta en ambos schemas");
+					System.out.println("	El procedimiento: " + p1.getName() + " tiene los mismos parametros en ambos schemas");
+					System.out.println("	El procedimiento: " + p1.getName() + " tiene el mismo codigo en ambos schemas");
 					break;
 				}
 			}
@@ -148,6 +150,9 @@ public class ProcedureFuntionCheck {
 			for (Function f2:schemaB.getFunctions() ){
 				if(f1.equals(f2)){
 					System.out.println("	La funcion: " + f1.getName() + " esta en ambos schemas");
+					System.out.println("	La funcion: " + f1.getName() + " tiene los mismos parametros en ambos schemas");
+					System.out.println("	La funcion: " + f1.getName() + " tiene el mismo tipo de retorno en ambos schemas");
+					System.out.println("	La funcion: " + f1.getName() + " tiene el mismo codigo en ambos schemas");
 					break;
 				}
 			}
