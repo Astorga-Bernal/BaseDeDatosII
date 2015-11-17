@@ -84,6 +84,7 @@ public class Settings {
 		url_baseA = ini.getParameters("url_baseA")+schemaA;
 		usernameA = ini.getParameters("usernameA");
 		passwordA = ini.getParameters("passwordA");
+		
 		schemaB = ini.getParameters("schemaB");
 		url_baseB = ini.getParameters("url_baseB")+schemaB;
 		usernameB = ini.getParameters("usernameB");

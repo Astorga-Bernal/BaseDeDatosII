@@ -4,8 +4,8 @@ import java.sql.*;
 
 public class DatabaseConnection {
 
-	static String driver = "com.mysql.jdbc.Driver";
-	static Connection connection;
+	private String driver = "com.mysql.jdbc.Driver";
+	private Connection connection = null;
 
 	public DatabaseConnection(String url, String username, String password) {
 		try {
@@ -16,7 +16,7 @@ public class DatabaseConnection {
 		}
 	}
 
-	public static Statement NewStatement() throws SQLException {
+	public Statement NewStatement() throws SQLException {
 		try {
 			Statement statement = connection.createStatement();
 			return statement;

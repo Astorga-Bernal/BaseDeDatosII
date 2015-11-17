@@ -62,7 +62,6 @@ public class Metadata {
 		this.databaseconnection = databaseconnection;
 	}
 
-	@SuppressWarnings("static-access")
 	private LinkedList<View> getViews() {
 		LinkedList<View> views = new LinkedList<View>();
 		String[] types = { TableType.VIEW.toString() };
@@ -84,7 +83,6 @@ public class Metadata {
 		return views;
 	}
 
-	@SuppressWarnings("static-access")
 	private LinkedList<StoredProcedure> getStoreProcedures() {
 		LinkedList<StoredProcedure> storeproductions = new LinkedList<StoredProcedure>();
 		try {
@@ -124,7 +122,6 @@ public class Metadata {
 		return storeproductions;
 	}
 
-	@SuppressWarnings("static-access")
 	private LinkedList<Function> getFunctions() {
 		LinkedList<Function> functions = new LinkedList<Function>();
 		try {
@@ -189,7 +186,6 @@ public class Metadata {
 	private LinkedList<Trigger> getTriggers(Table tabla) {
 		LinkedList<Trigger> triggers = new LinkedList<Trigger>();
 		try {
-			@SuppressWarnings("static-access")
 			ResultSet rsc = databaseconnection.NewStatement()
 					.executeQuery("select * from information_schema.TRIGGERS t WHERE t.TRIGGER_SCHEMA='"
 							+ schema.getName() + "' and t.EVENT_OBJECT_TABLE='" + tabla.getName() + "';");
@@ -208,7 +204,6 @@ public class Metadata {
 		return triggers;
 	}
 
-	@SuppressWarnings("static-access")
 	private LinkedList<UniqueKey> getUniqueKeys(Table tabla) {
 		LinkedList<UniqueKey> uniquekeys = new LinkedList<UniqueKey>();
 		try {
