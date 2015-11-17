@@ -32,6 +32,8 @@ public class ColumnCheck {
 			}
 			if (!exist) 
 				System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() + " DE " + tableA.getName()  + " NO EXISTE EN "+ tableB.getName());
+			else
+				System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() + " DE " + tableA.getName()  + " EXISTE EN "+ tableB.getName());
 		}
 
 		//Chequeo de columnas de la tabla B
@@ -48,6 +50,8 @@ public class ColumnCheck {
 			}
 			if (!exist) 
 				System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() + " DE " + tableB.getName()  + " NO EXISTE EN "+ tableA.getName());
+			else
+				System.out.println(">>>>>>>>>> LA COLUMNA "+ c1.getName() + " DE " + tableB.getName()  + " EXISTE EN "+ tableA.getName());
 		}
 
 		//Chequeo de columnas en ambas tablas

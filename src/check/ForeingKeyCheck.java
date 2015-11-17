@@ -25,6 +25,8 @@ public class ForeingKeyCheck {
 			}
 			if (!exist) 
 				System.out.println("	La ForeingKey "+ u1.getName() + " de la tabla " + tableA.getName() + " no existe en la tabla "+ tableB.getName());
+			else
+				System.out.println("	La ForeingKey "+ u1.getName() + " de la tabla " + tableA.getName() + " existe en la tabla "+ tableB.getName());
 		}
 
 		for (ForeingKey u1:tableB.getForeingkeys() ){
@@ -36,7 +38,9 @@ public class ForeingKeyCheck {
 				}
 			}
 			if (!exist) 
-				System.out.println(u1.getName() + " no existe en "+ tableA.getName());
+				System.out.println("	La ForeingKey "+ u1.getName() + " de la tabla " + tableB.getName() + " no existe en la tabla "+ tableA.getName());
+			else
+				System.out.println("	La ForeingKey "+ u1.getName() + " de la tabla " + tableB.getName() + " existe en la tabla "+ tableA.getName());
 		}
 
 		for (ForeingKey f1:tableA.getForeingkeys() ){
